@@ -1,11 +1,8 @@
 package io.github.hsyyid.script.cmdexecutors;
 
-import java.util.ArrayList;
-
-import io.github.hsyyid.script.Main;
-
+import io.github.hsyyid.script.Script;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.util.command.CommandException;
@@ -16,11 +13,13 @@ import org.spongepowered.api.util.command.source.CommandBlockSource;
 import org.spongepowered.api.util.command.source.ConsoleSource;
 import org.spongepowered.api.util.command.spec.CommandExecutor;
 
+import java.util.ArrayList;
+
 public class GenericGiveExecutor implements CommandExecutor
 {
 	public ArrayList<String> itemsToGive = new ArrayList <String>();
 	public String command;
-	Game game = Main.game;
+	Game game = Script.game;
 	
 	public GenericGiveExecutor(ArrayList<String> itemsToGive, String command)
 	{

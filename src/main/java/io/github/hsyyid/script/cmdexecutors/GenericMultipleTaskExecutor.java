@@ -1,12 +1,9 @@
 package io.github.hsyyid.script.cmdexecutors;
 
-import io.github.hsyyid.script.Main;
+import io.github.hsyyid.script.Script;
 import io.github.hsyyid.script.utils.Utils;
-
-import java.util.ArrayList;
-
 import org.spongepowered.api.Game;
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.util.command.CommandException;
@@ -17,12 +14,15 @@ import org.spongepowered.api.util.command.source.CommandBlockSource;
 import org.spongepowered.api.util.command.source.ConsoleSource;
 import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
+
+import java.util.ArrayList;
 
 public class GenericMultipleTaskExecutor implements CommandExecutor
 {	
 	ArrayList<String> tasks = new ArrayList<String>();
 	String commandName;
-	Game game = Main.game;
+	Game game = Script.game;
 	
 	public GenericMultipleTaskExecutor(ArrayList<String> tasks, String commandName)
 	{
@@ -44,7 +44,7 @@ public class GenericMultipleTaskExecutor implements CommandExecutor
 				}
 				else if(task.equals("teleport coord"))
 				{
-					Location location = new Location(player.getWorld(), Utils.getX(commandName, tasks.indexOf(task) + 1), Utils.getY(task, tasks.indexOf(task) + 1), Utils.getZ(task, tasks.indexOf(task) + 1));
+					Location<World> location = new Location<World>(player.getWorld(), Utils.getX(commandName, tasks.indexOf(task) + 1), Utils.getY(task, tasks.indexOf(task) + 1), Utils.getZ(task, tasks.indexOf(task) + 1));
 					player.setLocation(location);
 				}
 				else if(task.equals("give items"))

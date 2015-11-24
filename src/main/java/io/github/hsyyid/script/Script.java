@@ -1,33 +1,30 @@
 package io.github.hsyyid.script;
 
-import io.github.hsyyid.script.cmdexecutors.GenericMessageExecutor;
+import com.google.inject.Inject;
 import io.github.hsyyid.script.cmdexecutors.GenericGiveExecutor;
+import io.github.hsyyid.script.cmdexecutors.GenericMessageExecutor;
 import io.github.hsyyid.script.cmdexecutors.GenericMultipleTaskExecutor;
 import io.github.hsyyid.script.cmdexecutors.GenericTeleportCoordExecutor;
 import io.github.hsyyid.script.utils.Utils;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
-
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
-import org.spongepowered.api.event.Subscribe;
-import org.spongepowered.api.event.state.ServerStartedEvent;
+import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.service.config.DefaultConfig;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.util.command.spec.CommandSpec;
 import org.spongepowered.api.world.TeleportHelper;
 
-import com.google.inject.Inject;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 @Plugin(id = "Script", name = "Script", version = "0.1")
-public class Main
+public class Script
 {
 	public static Game game = null;
 	public static ConfigurationNode config = null;
@@ -50,8 +47,8 @@ public class Main
 	@DefaultConfig(sharedRoot = true)
 	private ConfigurationLoader<CommentedConfigurationNode> confManager;
 
-	@Subscribe
-	public void onServerStart(ServerStartedEvent event)
+	@Listener
+	public void onGameInit(GameInitializationEvent event)
 	{
 		getLogger().info("Script loading...");
 		game = event.getGame();

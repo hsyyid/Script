@@ -1,6 +1,6 @@
 package io.github.hsyyid.script.cmdexecutors;
 
-import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Texts;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.util.command.CommandException;
@@ -11,6 +11,7 @@ import org.spongepowered.api.util.command.source.CommandBlockSource;
 import org.spongepowered.api.util.command.source.ConsoleSource;
 import org.spongepowered.api.util.command.spec.CommandExecutor;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 public class GenericTeleportCoordExecutor implements CommandExecutor
 {
@@ -30,7 +31,7 @@ public class GenericTeleportCoordExecutor implements CommandExecutor
 		if(src instanceof Player)
 		{
 			Player player = (Player) src;
-			Location location = new Location(player.getWorld(), x, y, z);
+			Location<World> location = new Location<World>(player.getWorld(), x, y, z);
 			player.setLocation(location);
 		}
 		else if(src instanceof ConsoleSource) {
